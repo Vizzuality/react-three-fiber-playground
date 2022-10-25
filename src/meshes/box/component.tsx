@@ -14,10 +14,10 @@ function Box() {
   })
 
   return (
-        <mesh ref={meshRef}>
-          <boxGeometry />
-          <meshStandardMaterial />
-        </mesh>
+    <mesh ref={meshRef}>
+      <boxGeometry />
+      <meshStandardMaterial />
+    </mesh>
   );
 }
 
