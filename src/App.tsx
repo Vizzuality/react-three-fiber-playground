@@ -9,8 +9,8 @@ function App() {
     <div className="bg-gray-500 w-full h-screen">
       <Canvas>
         <ambientLight intensity={0.25} />
-        <pointLight color="white" position={[0, -10, 10]} intensity={0.5} />
-        <directionalLight color="white" position={[0, 10, 10]} intensity={0.5} />
+        <pointLight color="white" position={[-10, 10, 10]} intensity={0.5} />
+        {/* <directionalLight color="white" position={[0, 10, 10]} intensity={0.5} /> */}
 
         <Icosahedron />
 

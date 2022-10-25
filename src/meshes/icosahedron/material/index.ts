@@ -14,3 +14,12 @@ export const CustomMaterial = shaderMaterial(
 );
 
 export default CustomMaterial;
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      // @ts-ignore
+      customMaterial: ReactThreeFiber.Object3DNode<CustomMaterial, typeof CustomMaterial>;
+    }
+  }
+}
