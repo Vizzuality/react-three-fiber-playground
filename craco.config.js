@@ -16,15 +16,6 @@ module.exports = {
         }
         return rule;
       });
-      // .unshift({
-      //   test: /\.(glsl|frag|vert)$/,
-      //   use: [
-      //     require.resolve('raw-loader'),
-      //     require.resolve('glslify-loader'),
-      //   ]
-      // });
-
-      console.log(webpackConfig.module.rules);
       return webpackConfig;
     },
   }

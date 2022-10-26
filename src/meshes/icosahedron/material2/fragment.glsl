@@ -1,11 +1,10 @@
 uniform float u_time;
 
-varying vec2 vUv;
+varying vec2 v_uv;
 
 void main() {
-  vec2 uv = vUv;
-
   float opacity = 1.0;
 
-  return vec4(vec3((sin(u_time) + 1.0) / 2.0), opacity);
+
+  return vec4(vec3(0.5, 0.25, 0.0), opacity);
 }

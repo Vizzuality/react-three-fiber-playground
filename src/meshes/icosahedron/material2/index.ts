@@ -1,5 +1,8 @@
 import { Abstract } from 'lamina/vanilla';
 
+//@ts-ignore
+import glslify from 'glslify';
+
 import VERTEX from './vertex.glsl';
 import FRAGMENT from './fragment.glsl';
 
@@ -12,8 +15,8 @@ class CustomLayer extends Abstract {
   static u_time = 0;
 
   // pass your shader code here
-  static vertexShader = VERTEX;
-  static fragmentShader = FRAGMENT;
+  static vertexShader = glslify(VERTEX);
+  static fragmentShader = glslify(FRAGMENT);
 
   // @ts-ignore
   constructor(props) {
