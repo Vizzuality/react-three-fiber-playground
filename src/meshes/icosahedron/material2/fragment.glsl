@@ -1,4 +1,4 @@
-uniform float uTime;
+uniform float u_time;
 
 varying vec2 vUv;
 
@@ -7,5 +7,5 @@ void main() {
 
   float opacity = 1.0;
 
-  gl_FragColor = vec4(vec3((sin(uTime) + 1.0) / 2.0), opacity);
+  return vec4(vec3((sin(u_time) + 1.0) / 2.0), opacity);
 }

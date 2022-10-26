@@ -29,7 +29,7 @@ function Icosahedron() {
     <mesh ref={meshRef}>
       <icosahedronGeometry args={[1, 16]} />
 
-      <customMaterial ref={customMaterialRef} uTime={0} />
+      {/* <customMaterial ref={customMaterialRef} uTime={0} /> */}
 
       {/* Lamina */}
       <LayerMaterial lighting="lambert">

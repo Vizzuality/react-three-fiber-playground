@@ -1,5 +1,8 @@
 import { Abstract } from 'lamina/vanilla';
 
+import VERTEX from './vertex.glsl';
+import FRAGMENT from './fragment.glsl';
+
 export interface CustomLayerProps extends CustomLayer {
   time: number;
 }
@@ -9,37 +12,14 @@ class CustomLayer extends Abstract {
   static u_time = 0;
 
   // pass your shader code here
-  static vertexShader = /*glsl*/`
-    uniform float u_time;
-
-    varying vec2 vUv;
-
-    void main() {
-      vUv = uv;
-
-      return position;
-    }
-  `;
-  static fragmentShader = /*glsl*/`
-    uniform float u_time;
-
-    varying vec2 vUv;
-
-    void main() {
-      vec2 uv = vUv;
-
-      float opacity = 1.0;
-
-      return vec4(vec3((sin(u_time) + 1.0) / 2.0) * 0.75 + 0.25, opacity);
-    }
-  `;
+  static vertexShader = VERTEX;
+  static fragmentShader = FRAGMENT;
 
   // @ts-ignore
   constructor(props) {
     // @ts-ignore
     super(CustomLayer, {
       name: 'CustomLayer',
-      time: 0,
       ...props,
     });
   }
