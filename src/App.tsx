@@ -1,18 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import Icosahedron from "./meshes/icosahedron";
+import Explode from "./meshes/explode";
 
 function App() {
 
   return (
-    <div className="bg-gray-500 w-full h-screen">
+    <div className="w-full h-screen bg-gray-500">
       <Canvas>
         <ambientLight intensity={0.25} />
         <pointLight color="white" position={[-10, 10, 10]} intensity={0.5} />
-        {/* <directionalLight color="white" position={[0, 10, 10]} intensity={0.5} /> */}
 
-        <Icosahedron />
+        <Explode />
 
         <OrbitControls />
       </Canvas>

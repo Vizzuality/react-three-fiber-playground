@@ -4,21 +4,20 @@ import { useMemo, useRef } from "react";
 import { LayerMaterial, Depth, Fresnel } from "lamina";
 
 import {
-  BoxGeometry,
   BufferAttribute,
   BufferGeometry,
   Mesh,
-  IcosahedronGeometry, PlaneGeometry, SphereGeometry } from 'three';
+  IcosahedronGeometry
+} from 'three';
 
-import CustomLayer, { CustomLayerProps } from './material2';
-import CustomMaterial from "./material";
+import Triangles, { TrianglesProps } from '../../materials/triangles';
 
-extend({ CustomLayer, CustomMaterial });
+extend({ Triangles });
 
 function Icosahedron() {
   const meshRef = useRef<Mesh>(null);
   const geometryRef = useRef<BufferGeometry>(null);
-  const customMaterialRef = useRef<CustomLayerProps>();
+  const customMaterialRef = useRef<TrianglesProps>();
 
   const NON_INDEXED_GEOMETRY = useMemo(() => {
     const geometry = new IcosahedronGeometry(1, 32);
@@ -80,7 +79,7 @@ function Icosahedron() {
 
       {/* Lamina */}
       <LayerMaterial lighting="lambert">
-        <customLayer ref={customMaterialRef} time={0.0} />
+        <triangles ref={customMaterialRef} time={0.0} />
 
         <Depth colorA="green" colorB="aqua" alpha={0.9} mode="add" />
 

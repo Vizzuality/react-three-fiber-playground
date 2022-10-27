@@ -6,11 +6,11 @@ import glslify from 'glslify';
 import VERTEX from './vertex.glsl';
 import FRAGMENT from './fragment.glsl';
 
-export interface CustomLayerProps extends CustomLayer {
+export interface TrianglesProps extends Triangles {
   time: number;
 }
 
-class CustomLayer extends Abstract {
+class Triangles extends Abstract {
   // define your uniforms
   static u_time = 0;
 
@@ -21,20 +21,20 @@ class CustomLayer extends Abstract {
   // @ts-ignore
   constructor(props) {
     // @ts-ignore
-    super(CustomLayer, {
-      name: 'CustomLayer',
+    super(Triangles, {
+      name: 'Triangles',
       ...props,
     });
   }
 }
 
-export default CustomLayer;
+export default Triangles;
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
       // @ts-ignore
-      customLayer: ReactThreeFiber.Object3DNode<CustomLayer, typeof CustomLayer>;
+      triangles: ReactThreeFiber.Object3DNode<Triangles, typeof Triangles>;
     }
   }
 }
