@@ -1,9 +1,14 @@
 import { extend, useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 import { LayerMaterial, Depth, Fresnel } from "lamina";
 
-import { BufferAttribute, IcosahedronGeometry, Mesh } from 'three';
+import {
+  BoxGeometry,
+  BufferAttribute,
+  BufferGeometry,
+  Mesh,
+  IcosahedronGeometry, PlaneGeometry, SphereGeometry } from 'three';
 
 import CustomLayer, { CustomLayerProps } from './material2';
 import CustomMaterial from "./material";
@@ -12,17 +17,17 @@ extend({ CustomLayer, CustomMaterial });
 
 function Icosahedron() {
   const meshRef = useRef<Mesh>(null);
-  const geometryRef = useRef<IcosahedronGeometry>(null);
+  const geometryRef = useRef<BufferGeometry>(null);
   const customMaterialRef = useRef<CustomLayerProps>();
 
-  useFrame(({ clock }) => {
-    meshRef.current!.rotation.y = clock.getElapsedTime() / 2;
+  const NON_INDEXED_GEOMETRY = useMemo(() => {
+    const geometry = new IcosahedronGeometry(1, 32);
+    // const geometry = new BoxGeometry(1, 1, 1, 100, 100, 100);
+    // const geometry = new SphereGeometry(1, 100, 100);
+    // const geometry = new PlaneGeometry(1, 1, 100, 100);
+    const nonIndexedGeometry = geometry.toNonIndexed();
 
-    customMaterialRef.current!.time = clock.getElapsedTime();
-  });
-
-  useEffect(() => {
-    let count = geometryRef.current?.attributes.position.count || 0;
+    let count = nonIndexedGeometry.attributes.position.count || 0;
     let randoms = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i+=3) {
@@ -32,14 +37,46 @@ function Icosahedron() {
       randoms[i+2] = r;
     }
 
-    geometryRef.current?.setAttribute('a_random', new BufferAttribute(randoms, 1));
+    nonIndexedGeometry.setAttribute('a_random', new BufferAttribute(randoms, 1));
+
+    return nonIndexedGeometry;
+
   }, []);
+
+  useFrame(({ clock }) => {
+    meshRef.current!.rotation.z = clock.getElapsedTime() / 2;
+
+    customMaterialRef.current!.time = clock.getElapsedTime();
+  });
 
   return (
     <mesh ref={meshRef}>
-      <icosahedronGeometry ref={geometryRef} args={[1, 32]} />
-
-      {/* <customMaterial ref={customMaterialRef} uTime={0} /> */}
+      <bufferGeometry ref={geometryRef}>
+        <bufferAttribute
+          attach={'attributes-position'}
+          count={NON_INDEXED_GEOMETRY.attributes.position.count}
+          array={NON_INDEXED_GEOMETRY.attributes.position.array}
+          itemSize={NON_INDEXED_GEOMETRY.attributes.position.itemSize}
+        />
+        <bufferAttribute
+          attach={'attributes-normal'}
+          count={NON_INDEXED_GEOMETRY.attributes.normal.count}
+          array={NON_INDEXED_GEOMETRY.attributes.normal.array}
+          itemSize={NON_INDEXED_GEOMETRY.attributes.normal.itemSize}
+        />
+        <bufferAttribute
+          attach={'attributes-a_random'}
+          count={NON_INDEXED_GEOMETRY.attributes.a_random.count}
+          array={NON_INDEXED_GEOMETRY.attributes.a_random.array}
+          itemSize={NON_INDEXED_GEOMETRY.attributes.a_random.itemSize}
+        />
+        <bufferAttribute
+          attach={'attributes-uv'}
+          count={NON_INDEXED_GEOMETRY.attributes.uv.count}
+          array={NON_INDEXED_GEOMETRY.attributes.uv.array}
+          itemSize={NON_INDEXED_GEOMETRY.attributes.uv.itemSize}
+        />
+      </bufferGeometry>
 
       {/* Lamina */}
       <LayerMaterial lighting="lambert">
