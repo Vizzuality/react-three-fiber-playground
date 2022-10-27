@@ -23,6 +23,6 @@ const Template: Story = () => {
 </div>;
 };
 
-export const ShadersExplode = Template.bind({});
-ShadersExplode.args = {
+export const MeshExplosion = Template.bind({});
+MeshExplosion.args = {
 };

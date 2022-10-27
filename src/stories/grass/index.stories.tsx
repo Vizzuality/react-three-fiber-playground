@@ -1,10 +1,16 @@
+import { Story } from '@storybook/react/types-6-0';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import Explode from "./stories/explode/meshes/explode";
+import Explode from "./meshes/grass";
 
-function App() {
+const StoryExplode = {
+  title: 'Shaders/Explode',
+};
 
+export default StoryExplode;
+
+const Template: Story = () => {
   return (
     <div className="w-full h-screen bg-gray-500">
       <Canvas>
@@ -17,6 +23,8 @@ function App() {
       </Canvas>
     </div>
   );
-}
+};
 
-export default App;
+export const MeshGrass = Template.bind({});
+MeshGrass.args = {
+};
