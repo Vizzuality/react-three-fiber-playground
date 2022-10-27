@@ -10,7 +10,7 @@ import {
   IcosahedronGeometry
 } from 'three';
 
-import Triangles, { TrianglesProps } from '../../materials/triangles';
+import Triangles, { TrianglesProps } from '../../../../materials/triangles';
 
 extend({ Triangles });
 
