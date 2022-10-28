@@ -10,7 +10,7 @@ import {
   IcosahedronGeometry
 } from 'three';
 
-import Triangles, { TrianglesProps } from 'src/stories/grass/materials/triangles';
+import Triangles, { TrianglesProps } from 'stories/grass/materials/triangles';
 
 extend({ Triangles });
 

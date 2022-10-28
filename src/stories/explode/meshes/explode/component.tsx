@@ -10,7 +10,7 @@ import {
   IcosahedronGeometry
 } from 'three';
 
-import Explosion, { ExplosionProps } from 'src/stories/explode/materials/explosion';
+import Explosion, { ExplosionProps } from 'stories/explode/materials/explosion';
 
 extend({ Explosion });
 
