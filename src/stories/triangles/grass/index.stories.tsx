@@ -5,7 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import Explode from "./meshes/grass";
 
 const StoryExplode = {
-  title: 'Shaders/Explode',
+  title: 'Shaders/Triangles',
 };
 
 export default StoryExplode;

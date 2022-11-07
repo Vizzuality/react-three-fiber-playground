@@ -10,14 +10,14 @@ import {
   IcosahedronGeometry
 } from 'three';
 
-import Triangles, { TrianglesProps } from 'stories/grass/materials/triangles';
+import Explosion, { ExplosionProps } from 'stories/triangles/explode/materials/explosion';
 
-extend({ Triangles });
+extend({ Explosion });
 
-function Grass() {
+function Icosahedron() {
   const meshRef = useRef<Mesh>(null);
   const geometryRef = useRef<BufferGeometry>(null);
-  const customMaterialRef = useRef<TrianglesProps>();
+  const customMaterialRef = useRef<ExplosionProps>();
 
   const NON_INDEXED_GEOMETRY = useMemo(() => {
     const geometry = new IcosahedronGeometry(1, 32);
@@ -43,7 +43,7 @@ function Grass() {
   }, []);
 
   useFrame(({ clock }) => {
-    meshRef.current!.rotation.z = clock.getElapsedTime() / 2;
+    meshRef.current!.rotation.y = clock.getElapsedTime() / 2;
 
     customMaterialRef.current!.time = clock.getElapsedTime();
   });
@@ -79,14 +79,14 @@ function Grass() {
 
       {/* Lamina */}
       <LayerMaterial lighting="lambert">
-        <triangles ref={customMaterialRef} time={0.0} />
+        <explosion ref={customMaterialRef} time={0.0} />
 
-        <Depth colorA="green" colorB="aqua" alpha={0.9} mode="add" />
+        <Depth colorA="red" colorB="orange" alpha={0.9} mode="add" />
 
-        <Fresnel color="#00F3D9" mode="add" />
+        <Fresnel color="#FF0033" mode="add" />
       </LayerMaterial>
     </mesh>
   );
 }
 
-export default Grass;
+export default Icosahedron;
