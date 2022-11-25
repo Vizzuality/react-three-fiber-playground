@@ -39,6 +39,7 @@ function CustomPointsMaterial({ radius }: CustomPointsMaterialProps) {
       uniforms={uniforms}
       transparent
       alphaTest={0.5}
+      depthWrite={false}
     />
   )
 }

@@ -7,7 +7,7 @@ import CustomPointsMaterial from 'stories/particles/animated-sphere/materials/cu
 extend({ CustomPointsMaterial });
 
 function SphereParticles() {
-  const count = 5000;
+  const count = 50000;
   const radius = 1;
   const particles = useMemo(() => {
     // Create a Float32Array of count*3 length

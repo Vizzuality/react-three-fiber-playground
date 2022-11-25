@@ -1,6 +1,7 @@
 uniform float u_time;
 
 varying vec2 v_uv;
+varying vec3 v_normal;
 
 void main() {
   vec4 color = vec4(1.0, 0.525, 0.961, 1.0);
@@ -17,5 +18,5 @@ void main() {
   delta = fwidth(r);
   alpha = 1.0 - smoothstep(1.0 - delta, 1.0 + delta, r);
 
-  gl_FragColor = vec4(color.r, color.g, color.b, color.a) * opacity * alpha;
+  gl_FragColor = vec4(color.r, v_normal.g, v_normal.b, color.a) * opacity * alpha;
 }
