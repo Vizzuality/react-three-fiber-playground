@@ -1,4 +1,4 @@
-function Icosahedron() {
+function SphereParticles() {
   return (
     <points>
       <sphereGeometry args={[1, 64, 64]} />
@@ -7,4 +7,4 @@ function Icosahedron() {
   );
 }
 
-export default Icosahedron;
+export default SphereParticles;

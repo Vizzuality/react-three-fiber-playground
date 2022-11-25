@@ -18,11 +18,11 @@ const Template: Story = () => {
 
     <SphereParticles />
 
-    <OrbitControls autoRotate />
+    <OrbitControls />
   </Canvas>
 </div>;
 };
 
-export const ParticlesSphere = Template.bind({});
-ParticlesSphere.args = {
+export const ParticlesRandomSphere = Template.bind({});
+ParticlesRandomSphere.args = {
 };

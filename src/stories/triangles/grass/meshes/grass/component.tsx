@@ -7,7 +7,7 @@ import {
   BufferAttribute,
   BufferGeometry,
   Mesh,
-  IcosahedronGeometry
+  IcosahedronGeometry,
 } from 'three';
 
 import Triangles, { TrianglesProps } from 'stories/triangles/grass/materials/triangles';
@@ -43,7 +43,7 @@ function Grass() {
   }, []);
 
   useFrame(({ clock }) => {
-    meshRef.current!.rotation.z = clock.getElapsedTime() / 2;
+    // meshRef.current!.rotation.z = clock.getElapsedTime() / 2;
 
     customMaterialRef.current!.time = clock.getElapsedTime();
   });
