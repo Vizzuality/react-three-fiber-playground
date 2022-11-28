@@ -2,13 +2,13 @@ import { Story } from '@storybook/react/types-6-0';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import Explode from "./meshes/explode";
+import TorusParticles from "./meshes/torus";
 
-const StoryExplode = {
-  title: 'Shaders/Triangles',
+const StoryTorusParticles = {
+  title: 'Shaders/Particles',
 };
 
-export default StoryExplode;
+export default StoryTorusParticles;
 
 const Template: Story = () => {
   return <div className="w-full h-screen bg-gray-500">
@@ -16,13 +16,13 @@ const Template: Story = () => {
     <ambientLight intensity={0.25} />
     <pointLight color="white" position={[-10, 10, 10]} intensity={0.5} />
 
-    <Explode />
+    <TorusParticles />
 
     <OrbitControls />
   </Canvas>
 </div>;
 };
 
-export const _1_MeshExplosion = Template.bind({});
-_1_MeshExplosion.args = {
+export const _3_ParticlesRandomTorus = Template.bind({});
+_3_ParticlesRandomTorus.args = {
 };

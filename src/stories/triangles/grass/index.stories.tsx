@@ -25,6 +25,6 @@ const Template: Story = () => {
   );
 };
 
-export const MeshGrass = Template.bind({});
-MeshGrass.args = {
+export const _2_MeshGrass = Template.bind({});
+_2_MeshGrass.args = {
 };

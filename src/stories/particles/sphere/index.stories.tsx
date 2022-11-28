@@ -23,6 +23,6 @@ const Template: Story = () => {
 </div>;
 };
 
-export const ParticlesSphere = Template.bind({});
-ParticlesSphere.args = {
+export const _1_ParticlesSphere = Template.bind({});
+_1_ParticlesSphere.args = {
 };
