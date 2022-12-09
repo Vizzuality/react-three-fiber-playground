@@ -1,14 +1,37 @@
-import { extend } from "@react-three/fiber";
-import { useMemo } from "react";
-import { MathUtils } from "three";
+import { extend, useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import { Float32BufferAttribute, MathUtils, Mesh, Points } from "three";
 
 import CustomPointsMaterial from 'stories/particles/animated-sphere/materials/custom-points';
+import { useControls } from "leva";
 
 extend({ CustomPointsMaterial });
 
 function SphereParticles() {
-  const count = 50000;
-  const radius = 1;
+  const pointsRef = useRef<Points>(null);
+  const meshRef = useRef<Mesh>(null);
+
+
+  const { count } = useControls({
+    count: { value: 25000, min: 1000, max: 100000, order: -2 },
+  })
+
+  const { meshVisibility, meshColor } = useControls('Mesh', {
+    meshVisibility: {
+      group: 'Mesh',
+      value: true,
+      label: 'Sphere visibility',
+      order: 2
+    },
+    meshColor: {
+      group: 'Mesh',
+      value: '#ff6900',
+      label: 'Sphere color',
+      order: 2
+    }
+  });
+
+
   const particles = useMemo(() => {
     // Create a Float32Array of count*3 length
     // -> we are going to generate the x, y, and z values for 5000 particles
@@ -36,28 +59,39 @@ function SphereParticles() {
     };
   }, [count]);
 
-  console.log(particles);
+  useFrame(() => {
+    pointsRef.current!.geometry.setAttribute('position', new Float32BufferAttribute(particles.positions, 3));
+    pointsRef.current!.geometry.setAttribute('a_random', new Float32BufferAttribute(particles.randoms, 1));
+
+    meshRef.current!.rotation.z += 0.001;
+  });
 
   return (
-    <points>
-      <bufferGeometry>
-        <bufferAttribute
-          attach='attributes-position'
-          count={particles.positions.length / 3}
-          array={particles.positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach='attributes-a_random'
-          count={particles.randoms.length}
-          array={particles.randoms}
-          itemSize={1}
-        />
-      </bufferGeometry>
+    <>
+      <mesh ref={meshRef} visible={meshVisibility}>
+        <sphereGeometry args={[0.975, 32, 32]} />
+        <meshPhysicalMaterial emissive={"#000000"} color={meshColor} metalness={1} roughness={0.75} reflectivity={0.5} />
+      </mesh>
+      <points ref={pointsRef} rotation={[Math.PI, 0, 0]}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach='attributes-position'
+            count={particles.positions.length / 3}
+            array={particles.positions}
+            itemSize={3}
+          />
+          <bufferAttribute
+            attach='attributes-a_random'
+            count={particles.randoms.length}
+            array={particles.randoms}
+            itemSize={1}
+          />
+        </bufferGeometry>
 
-      <CustomPointsMaterial radius={radius} />
-      {/* <pointsMaterial color="#FF86F5" size={0.01} sizeAttenuation /> */}
-    </points>
+        <CustomPointsMaterial />
+        {/* <pointsMaterial color="#FF86F5" size={0.01} sizeAttenuation /> */}
+      </points>
+    </>
   );
 }
 

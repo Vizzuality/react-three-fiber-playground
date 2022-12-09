@@ -12,7 +12,7 @@ export default StorySphereParticles;
 
 const Template: Story = () => {
   return <div className="w-full h-screen bg-gray-500">
-  <Canvas camera={{ position: [1.5, 1.5, 1.5] }}>
+  <Canvas camera={{ position: [0, 0, 4] }}>
     <ambientLight intensity={0.25} />
     <pointLight color="white" position={[-10, 10, 10]} intensity={0.5} />
 

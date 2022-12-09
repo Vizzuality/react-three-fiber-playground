@@ -18,5 +18,5 @@ void main() {
   delta = fwidth(r);
   alpha = 1.0 - smoothstep(1.0 - delta, 1.0 + delta, r);
 
-  gl_FragColor = vec4(v_normal.r, color.g, v_normal.b, color.a) * opacity * alpha;
+  gl_FragColor = vec4(1.0, color.g, v_normal.b, color.a) * opacity * alpha;
 }
