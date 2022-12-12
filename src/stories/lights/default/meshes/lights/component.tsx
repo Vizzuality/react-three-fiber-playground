@@ -246,8 +246,11 @@ function Lights() {
     }
   });
 
+<<<<<<< HEAD
   useHelper(shadowCameraRef, CameraHelper);
 
+=======
+>>>>>>> 045fa8da97d019810360a5b53c9b4af78dada5eb
   return (
     <>
       <ambientLight
@@ -257,15 +260,23 @@ function Lights() {
       />
 
       <directionalLight
+<<<<<<< HEAD
         ref={directionalLightRef}
+=======
+>>>>>>> 045fa8da97d019810360a5b53c9b4af78dada5eb
         visible={directionalEnabled}
         color={directionalColor}
         intensity={directionalIntensity}
         position={directionalPosition}
         castShadow={directionalCastShadow}
+<<<<<<< HEAD
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
         shadow-radius={10}
+=======
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+>>>>>>> 045fa8da97d019810360a5b53c9b4af78dada5eb
       />
 
       <pointLight
