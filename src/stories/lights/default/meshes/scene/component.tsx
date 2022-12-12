@@ -29,8 +29,4 @@ function Scene() {
   );
 }
 
-<<<<<<< HEAD
 export default Scene;
-=======
-export default Sphere;
->>>>>>> 045fa8da97d019810360a5b53c9b4af78dada5eb
