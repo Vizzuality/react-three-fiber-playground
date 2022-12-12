@@ -246,11 +246,8 @@ function Lights() {
     }
   });
 
-<<<<<<< HEAD
   useHelper(shadowCameraRef, CameraHelper);
 
-=======
->>>>>>> 045fa8da97d019810360a5b53c9b4af78dada5eb
   return (
     <>
       <ambientLight
