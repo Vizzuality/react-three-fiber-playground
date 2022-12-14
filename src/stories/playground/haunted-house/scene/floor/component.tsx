@@ -1,6 +1,6 @@
 import { useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import { BufferAttribute, LinearEncoding, Mesh, RepeatWrapping, Texture } from "three";
+import { BufferAttribute, Mesh, RepeatWrapping, Texture } from "three";
 
 function Floor() {
   const grassRef = useRef<Mesh>(null);

@@ -35,7 +35,7 @@ const Template: Story = () => {
 
         <Scene />
 
-        {/* <OrbitControls makeDefault /> */}
+        <OrbitControls makeDefault />
       </Canvas>
     </div>
   )

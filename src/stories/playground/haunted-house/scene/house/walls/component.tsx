@@ -1,6 +1,6 @@
 import { useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import { BufferAttribute, LinearEncoding, Mesh, sRGBEncoding, Texture } from "three";
+import { BufferAttribute, LinearEncoding, Mesh, Texture } from "three";
 
 function Walls() {
   const wallsRef = useRef<Mesh>(null);
