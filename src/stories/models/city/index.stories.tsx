@@ -4,11 +4,11 @@ import { OrbitControls } from "@react-three/drei";
 
 import City from "./meshes/city";
 
-const StoryExplode = {
+const StoryCity = {
   title: 'Models',
 };
 
-export default StoryExplode;
+export default StoryCity;
 
 const Template: Story = () => {
   return (
@@ -25,6 +25,6 @@ const Template: Story = () => {
   );
 };
 
-export const MeshCity = Template.bind({});
-MeshCity.args = {
+export const _2_CityModel = Template.bind({});
+_2_CityModel.args = {
 };
