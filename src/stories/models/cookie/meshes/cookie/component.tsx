@@ -9,6 +9,7 @@ interface CookieProps {
 }
 
 function Cookie(props: any) {
+  const { cookieColor } = props;
   const [selected, setSelected] = useState<boolean>(false);
 
   const texture = useTexture({
@@ -31,11 +32,19 @@ function Cookie(props: any) {
         </LayerMaterial>
       </mesh>
 
-      <mesh
+      <motion.mesh
         castShadow
         receiveShadow
         geometry={nodes.Cookie.geometry}
         rotation={[Math.PI, 0, 0]}
+        animate={{
+          rotateY: selected ? [0, Math.PI, Math.PI * 2] : 0,
+          scale: selected ? [1, 0.5, 1] : 1,
+        }}
+        transition={{
+          duration: 2,
+          ease: selected ? ["anticipate", 'anticipate'] : 'anticipate',
+        }}
         onClick={(e) => {
           e.stopPropagation();
           setSelected(!selected);
@@ -43,6 +52,7 @@ function Cookie(props: any) {
       >
         <meshStandardMaterial
           {...texture}
+          color={cookieColor}
           map-flipY={false}
           map-encoding={sRGBEncoding}
           normalMap-flipY={false}
@@ -69,7 +79,8 @@ function Cookie(props: any) {
                   y: selected ? n.position.y - (0.25 + (Math.random() * 0.5)) : n.position.y,
                 }}
                 transition={{
-                  duration: 0.5,
+                  duration: 0.75,
+                  delay: 1.25,
                   ease: selected ? "backOut" : 'anticipate',
                 }}
               />
@@ -78,7 +89,7 @@ function Cookie(props: any) {
 
           return null;
         })}
-      </mesh>
+      </motion.mesh>
     </group>
   );
 }

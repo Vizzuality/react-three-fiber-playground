@@ -44,11 +44,11 @@ const Template: Story = () => {
         />
 
         <Suspense fallback={null}>
-          <Cookie position={[5, 0, 0]} rotation={[0, -Math.PI * 0.5, 0]} />
+          <Cookie position={[-5, 0, 0]} rotation={[0, -Math.PI * 0.5, 0]} cookieColor="#A47551" />
 
           <Cookie />
 
-          <Cookie position={[-5, 0, 0]} rotation={[0, Math.PI * 0.5, 0]} />
+          <Cookie position={[5, 0, 0]} rotation={[0, Math.PI * 0.5, 0]} cookieColor="#555555" />
         </Suspense>
 
         <OrbitControls makeDefault maxPolarAngle={Math.PI/2.5} minDistance={8} maxDistance={15} />
