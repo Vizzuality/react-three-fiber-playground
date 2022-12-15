@@ -19,6 +19,7 @@
     "glslify": "^7.1.1",
     "lamina": "^1.1.23",
     "leva": "0.9.34",
+    "r3f-perf": "6.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",

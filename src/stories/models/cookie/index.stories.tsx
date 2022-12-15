@@ -1,6 +1,8 @@
 import { Story } from '@storybook/react/types-6-0';
 import { Canvas } from "@react-three/fiber";
-import { Clone, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
+
+import { Perf } from 'r3f-perf';
 
 import Cookie from "./meshes/cookie";
 import { Suspense } from 'react';
@@ -26,6 +28,8 @@ const Template: Story = () => {
         }}
         shadows
       >
+        {process.env.NODE_ENV === 'development' && <Perf />}
+
         <ambientLight intensity={0.5} />
         <directionalLight
           color="white"
