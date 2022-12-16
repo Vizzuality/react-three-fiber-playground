@@ -38,12 +38,12 @@ function Cookie(props: any) {
         geometry={nodes.Cookie.geometry}
         rotation={[Math.PI, 0, 0]}
         animate={{
-          rotateY: selected ? [0, Math.PI, Math.PI * 2] : 0,
+          rotateY: selected ? [0, Math.PI/2, Math.PI] : 0,
           scale: selected ? [1, 0.5, 1] : 1,
         }}
         transition={{
-          duration: 2,
-          ease: selected ? ["anticipate", 'anticipate'] : 'anticipate',
+          duration: 1.25,
+          ease: selected ? ["backIn", 'backOut'] : 'anticipate',
         }}
         onClick={(e) => {
           e.stopPropagation();
@@ -79,8 +79,8 @@ function Cookie(props: any) {
                   y: selected ? n.position.y - (0.25 + (Math.random() * 0.5)) : n.position.y,
                 }}
                 transition={{
-                  duration: 0.75,
-                  delay: 1.25,
+                  duration: 0.5,
+                  delay: 0.5,
                   ease: selected ? "backOut" : 'anticipate',
                 }}
               />
