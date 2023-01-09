@@ -19,11 +19,10 @@ function Floor() {
       for (let j = 0; j < tiles; j++) {
         const p = new Vector3(
           i * tileWidth - (tiles * tileWidth) / 2 + tileWidth / 2,
-          // (Math.random() - 0.5) * 200,
-          -tileHeight / 2,
+          // (Math.random() - 1) * 5,
+          -tileHeight,
           j * tileDepth - (tiles * tileDepth) / 2 + tileDepth / 2
         );
-        console.log(p);
         positions.push(p);
       }
     }
@@ -34,14 +33,13 @@ function Floor() {
   return (
     <>
       {tilesPositions.map((position, index) => (
-        <RigidBody key={index} type="fixed" position={position}>
+        <RigidBody key={index} type="fixed" position={position} friction={0.5}>
           <mesh
             geometry={geometry}
             scale={[tileWidth, tileHeight, tileDepth]}
             receiveShadow
-            castShadow
           >
-            <meshStandardMaterial color="#ff0000" />
+            <meshStandardMaterial color="orange" />
           </mesh>
         </RigidBody>
       ))}

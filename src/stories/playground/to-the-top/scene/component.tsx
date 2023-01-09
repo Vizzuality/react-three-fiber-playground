@@ -1,12 +1,18 @@
-import { Debug, Physics } from "@react-three/rapier";
+import { Physics } from "@react-three/rapier";
+
+import Controls from "./controls";
 import Floor from "./floor";
+import Player from "./player";
 
 function Scene() {
   return (
-    <Physics>
-      <Debug />
-      <Floor />
-    </Physics>
+    <Controls>
+      <Physics>
+        {/* <Debug /> */}
+        <Player />
+        <Floor />
+      </Physics>
+    </Controls>
   );
 }
 
