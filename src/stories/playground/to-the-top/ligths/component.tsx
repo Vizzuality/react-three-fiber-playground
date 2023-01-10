@@ -36,10 +36,10 @@ function Lights() {
         // shadow-camera-near={0.5}
         // shadow-camera-far={5000}
 
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
+        shadow-camera-left={-20}
+        shadow-camera-right={20}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
       />
     </>
   );
