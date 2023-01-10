@@ -7,7 +7,7 @@ import Player from "./player";
 function Scene() {
   return (
     <Controls>
-      <Physics>
+      <Physics timeStep="vary">
         {/* <Debug /> */}
         <Player />
         <Floor />

@@ -33,8 +33,8 @@ function Lights() {
         // shadow-mapSize-width={2048}
         // shadow-mapSize-height={2048}
 
-        // shadow-camera-near={0.5}
-        // shadow-camera-far={5000}
+        shadow-camera-near={-5000}
+        shadow-camera-far={5000}
 
         shadow-camera-left={-20}
         shadow-camera-right={20}

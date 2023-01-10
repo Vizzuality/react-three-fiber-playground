@@ -59,8 +59,8 @@ function Player() {
     const impulse = { x: 0, y: 0, z: 0 };
     const torque = { x: 0, y: 0, z: 0 };
 
-    const impulseStrength = 100 * delta;
-    const torqueStrength = 60 * delta;
+    const impulseStrength = 50 * delta;
+    const torqueStrength = 30 * delta;
 
     if (forward) {
       impulse.x -= impulseStrength;
