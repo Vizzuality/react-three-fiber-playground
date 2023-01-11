@@ -48,6 +48,8 @@ function Player() {
     return false;
   }, [isInAir, jumpPressed])
 
+  // Dead
+
   useFrame(({ camera, scene }, delta) => {
     const {
       forward,
@@ -94,11 +96,23 @@ function Player() {
       torque.z -= torqueStrength;
     }
 
-    if (!isInAir()) {
+    if (playerRef.current && !isInAir()) {
       playerRef.current?.applyImpulse(impulse);
       playerRef.current?.applyTorqueImpulse(torque);
     }
 
+    // Reset position
+    if (playerRef.current) {
+      const position = playerRef.current.translation();
+
+      if (position.y < -10) {
+        // Reset velocity
+        playerRef.current.setLinvel({ x: 0, y: 0, z: 0 });
+        playerRef.current.setAngvel({ x: 0, y: 0, z: 0 });
+        playerRef.current?.setTranslation({ x: 0, y: 1, z: 0 });
+
+      }
+    }
 
     // Camera position
     if (playerRef.current) {

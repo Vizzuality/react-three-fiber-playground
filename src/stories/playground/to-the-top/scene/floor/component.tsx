@@ -1,4 +1,4 @@
-import { InstancedRigidBodies, InstancedRigidBodyApi, Vector3Array } from "@react-three/rapier";
+import { CuboidCollider, InstancedRigidBodies, InstancedRigidBodyApi, RigidBody, Vector3Array } from "@react-three/rapier";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import { BoxGeometry, Color, InstancedMesh, MeshStandardMaterial } from "three";
 
@@ -14,12 +14,15 @@ function Floor() {
     return new MeshStandardMaterial({ color: "white" });
   }, []);
 
-  const tiles = 100;
+  const tiles = 4;
   const tileWidth = 10;
   const tileHeight = 2;
   const tileDepth = 10;
 
-  const { positions: tilesPositions, scales: tilesScales } = useMemo(() => {
+  const {
+    positions: tilesPositions,
+    scales: tilesScales
+  } = useMemo(() => {
     const positions = [];
     const scales = [];
     const colors = [];
@@ -45,7 +48,7 @@ function Floor() {
       scales,
       colors
     };
-  }, [tiles, tileWidth, tileDepth]);
+  }, [tiles, tileWidth, tileHeight, tileDepth]);
 
   useLayoutEffect(() => {
     if (!instancedMeshRef.current) return;
@@ -58,23 +61,24 @@ function Floor() {
 
   return (
     <>
-      {/* <RigidBody type="fixed" position={[0, -tileHeight, 0]} friction={0.5}>
-        <mesh
-          geometry={geometry}
-          scale={[tileWidth * tiles, tileHeight, tileDepth * tiles]}
-          receiveShadow
-        >
-          <LayerMaterial lighting="standard">
-            <Depth
-              colorA={"#FFCC00"}
-              colorB={"#00FFCC"}
-              near={0}
-              far={tileWidth * tiles * 0.5}
-            />
-          </LayerMaterial>
-        </mesh>
-      </RigidBody> */}
+      {/* Dead zone */}
+      <RigidBody
+        type="fixed"
+        position={[
+          0,
+          -tileHeight * 4,
+          0
+        ]}
+      >
+        <CuboidCollider
+          args={[tiles * 2 * tileWidth, tileHeight, tiles * 2 * tileDepth]}
+          sensor
+          onIntersectionEnter={() => console.log("Goal!")}
+        />
+      </RigidBody>
 
+
+      {/* Floor */}
       <InstancedRigidBodies
         ref={instancedRigidRef}
         positions={tilesPositions}
@@ -88,17 +92,6 @@ function Floor() {
           receiveShadow
         />
       </InstancedRigidBodies>
-      {/* {tilesPositions.map((position, index) => (
-        <RigidBody key={index} type="fixed" position={position} friction={0.5}>
-          <mesh
-            geometry={geometry}
-            scale={[tileWidth, tileHeight, tileDepth]}
-            receiveShadow
-          >
-            <meshStandardMaterial color={tilesColors[index]} />
-          </mesh>
-        </RigidBody>
-      ))} */}
     </>
   );
 }

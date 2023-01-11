@@ -8,7 +8,7 @@ function Scene() {
   return (
     <Controls>
       <Physics timeStep="vary">
-        {/* <Debug /> */}
+        {/* <Debug  /> */}
         <Player />
         <Floor />
       </Physics>
