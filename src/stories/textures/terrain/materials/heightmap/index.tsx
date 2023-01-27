@@ -4,7 +4,7 @@ import glslify from 'glslify';
 import VERTEX from './vertex.glsl';
 import FRAGMENT from './fragment.glsl';
 import { useRef } from 'react';
-import { ClampToEdgeWrapping, DoubleSide, LinearEncoding, RepeatWrapping, ShaderMaterial, sRGBEncoding } from 'three';
+import { ClampToEdgeWrapping, DoubleSide, LinearEncoding, ShaderMaterial, sRGBEncoding } from 'three';
 import { useTexture } from '@react-three/drei';
 
 function HeightMapMaterial() {

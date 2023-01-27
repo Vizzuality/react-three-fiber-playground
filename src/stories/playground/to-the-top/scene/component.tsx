@@ -1,4 +1,4 @@
-import { Physics } from "@react-three/rapier";
+import { Physics, Debug } from "@react-three/rapier";
 
 import Controls from "./controls";
 import Floor from "./floor";
@@ -8,7 +8,7 @@ function Scene() {
   return (
     <Controls>
       <Physics timeStep="vary">
-        {/* <Debug  /> */}
+        <Debug />
         <Player />
         <Floor />
       </Physics>

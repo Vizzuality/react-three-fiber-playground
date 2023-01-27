@@ -1,6 +1,6 @@
-import { CuboidCollider, InstancedRigidBodies, InstancedRigidBodyApi, RigidBody, Vector3Array } from "@react-three/rapier";
+import { Attractor, CuboidCollider, InstancedRigidBodies, InstancedRigidBodyApi, RigidBody, Vector3Array } from "@react-three/rapier";
 import { useLayoutEffect, useMemo, useRef } from "react";
-import { BoxGeometry, Color, InstancedMesh, MeshStandardMaterial } from "three";
+import { BoxGeometry, Color, InstancedMesh, MeshStandardMaterial, Vector3 } from "three";
 
 function Floor() {
   const instancedRigidRef = useRef<InstancedRigidBodyApi>(null);
@@ -21,11 +21,13 @@ function Floor() {
 
   const {
     positions: tilesPositions,
-    scales: tilesScales
+    scales: tilesScales,
+    obstacles: tilesObstacles
   } = useMemo(() => {
     const positions = [];
     const scales = [];
     const colors = [];
+    const obstacles = [];
 
 
     for (let i = 0; i < tiles; i++) {
@@ -37,7 +39,12 @@ function Floor() {
           (j * tileDepth - (tiles * tileDepth) + tileDepth / 2) + tileDepth / 2,
         ] as Vector3Array;
 
-        positions.push(p);
+        positions.push(p as Vector3Array);
+        obstacles.push({
+          id: `${i}-${j}`,
+          type: 'vacum',
+          position: new Vector3(p[0], p[1] + tileHeight / 2, p[2])
+        });
         scales.push([tileWidth, tileHeight, tileDepth] as Vector3Array);
         colors.push(new Color(Math.random(), Math.random(), Math.random()));
       }
@@ -46,7 +53,8 @@ function Floor() {
     return {
       positions,
       scales,
-      colors
+      colors,
+      obstacles
     };
   }, [tiles, tileWidth, tileHeight, tileDepth]);
 
@@ -60,7 +68,7 @@ function Floor() {
   }, [])
 
   return (
-    <>
+    <group>
       {/* Dead zone */}
       <RigidBody
         type="fixed"
@@ -92,7 +100,25 @@ function Floor() {
           receiveShadow
         />
       </InstancedRigidBodies>
-    </>
+
+      <Attractor
+        range={10}
+        strength={10}
+        position={[0,1,0]}
+      />
+
+      {/* {tilesObstacles.map((p, i) => {
+        const p1 = p.position.clone();
+
+        return (
+          <Attractor
+            range={10}
+            strength={0.1}
+            position={p1.add(new Vector3(0, 1, 0))}
+          />
+        );
+      })} */}
+    </group>
   );
 }
 

@@ -7,9 +7,9 @@ function Lights() {
 
   useFrame(({ camera }) => {
     if (directionalLightRef.current) {
-      directionalLightRef.current.position.x = camera.position.x;
+      directionalLightRef.current.position.x = camera.position.x + 1;
       directionalLightRef.current.position.y = 5;
-      directionalLightRef.current.position.z = camera.position.z;
+      directionalLightRef.current.position.z = camera.position.z - 1;
 
       directionalLightRef.current.target.position.x = camera.position.x;
       directionalLightRef.current.target.position.y = 0;
@@ -28,7 +28,7 @@ function Lights() {
         name="shadow-light"
         color="#b9d5ff"
         intensity={1}
-        position={[0, 5, 0]}
+        position={[1, 5, -1]}
         castShadow
         // shadow-mapSize-width={2048}
         // shadow-mapSize-height={2048}

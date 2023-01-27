@@ -135,7 +135,7 @@ function Player() {
       position={[0, 1, 0]}
       linearDamping={0.5}
       angularDamping={0.5}
-      mass={5}
+      // mass={5}
     >
       <mesh receiveShadow castShadow>
         <icosahedronGeometry args={[RADIUS, RADIUS]} />

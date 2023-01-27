@@ -1,0 +1,1 @@
+export { default as Vacum } from './vacum';
